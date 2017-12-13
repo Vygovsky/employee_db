@@ -35,7 +35,8 @@ public class CollectionEmployeeDao implements EmployeeDao {
         for (Employee e : Db.getEmployees()) {
             if (employee.getId() == e.getId()) {
                 e.setName(employee.getName());
-                //todo остальные поля
+                e.setEmail(employee.getEmail());
+                e.setBirthday(employee.getBirthday());
                 return true;
             }
         }
