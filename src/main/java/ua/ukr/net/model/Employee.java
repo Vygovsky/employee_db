@@ -70,8 +70,7 @@ public class Employee {
         if (id != employee.id) return false;
         if (serialNumber != employee.serialNumber) return false;
         if (!name.equals(employee.name)) return false;
-        if (!email.equals(employee.email)) return false;
-        return birthday.equals(employee.birthday);
+        return email.equals(employee.email);
     }
 
     @Override
@@ -79,7 +78,6 @@ public class Employee {
         int result = (int) (id ^ (id >>> 32));
         result = 31 * result + name.hashCode();
         result = 31 * result + email.hashCode();
-        result = 31 * result + birthday.hashCode();
         result = 31 * result + (int) (serialNumber ^ (serialNumber >>> 32));
         return result;
     }

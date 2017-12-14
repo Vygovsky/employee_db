@@ -2,6 +2,7 @@ package ua.ukr.net.Dao;
 
 import ua.ukr.net.model.Employee;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -9,7 +10,6 @@ import java.util.List;
  * Created by Roman_v on 06.12.2017.
  */
 public class CollectionEmployeeDao implements EmployeeDao {
-
 
     public List<Employee> findAll() {
         return Db.getEmployees();
