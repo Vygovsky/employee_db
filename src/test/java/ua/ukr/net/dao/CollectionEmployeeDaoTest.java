@@ -1,7 +1,7 @@
 package ua.ukr.net.dao;
 
 import org.junit.*;
-import ua.ukr.net.Dao.CollectionEmployeeDao;
+import ua.ukr.net.Dao.JdbcEmployeeDao;
 import ua.ukr.net.Dao.Db;
 import ua.ukr.net.model.Employee;
 
@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
  * Created by storm on 12/14/17.
  */
 public class CollectionEmployeeDaoTest {
-    private CollectionEmployeeDao dao;
+    private JdbcEmployeeDao dao;
 
     @BeforeClass
     public static void initClass() {
@@ -31,7 +31,7 @@ public class CollectionEmployeeDaoTest {
 
     @Before
     public void init() {
-        dao = new CollectionEmployeeDao();
+        dao = new JdbcEmployeeDao();
     }
 
     @Test
@@ -43,11 +43,11 @@ public class CollectionEmployeeDaoTest {
     @Test
     public void addEmployee() {
         try {
-         dao.add(null);
+         dao.create(null);
             fail("");
         } catch (NullPointerException e) {
         }
-        dao.add(new Employee(52, "Vova", "Vova@ukr.net", new Date(), 2582));
+        dao.create(new Employee(52, "Vova", "Vova@ukr.net", new Date(), 2582));
         assertEquals(4,dao.findAll().size());
     }
     @Test
