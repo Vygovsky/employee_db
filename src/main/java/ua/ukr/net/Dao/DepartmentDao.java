@@ -5,11 +5,11 @@ import ua.ukr.net.model.Department;
 import java.util.List;
 
 public interface DepartmentDao {
-    create(Department department);
+    Department create(Department department);
 
-    update(Department department);
+    Department update(Department department);
 
-    remove(Department department);
+    Department remove(Department department);
 
     List<Department> findAll();
 
