@@ -56,8 +56,8 @@ public class CollectionEmployeeDaoTest {
         Employee byId = dao.findById(12L);
         assertNotNull(byId);
         assertEquals(roman,byId);
-
     }
+
     @Test
     public void findByBadId(){
         Employee byId = dao.findById(1888L);

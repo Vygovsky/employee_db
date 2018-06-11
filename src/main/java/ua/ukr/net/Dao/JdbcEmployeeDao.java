@@ -18,6 +18,7 @@ public class JdbcEmployeeDao implements EmployeeDao {
         return null;
     }
 
+
     public boolean create(Employee employee) {
         if (null == employee) {
             throw new NullPointerException();
