@@ -19,14 +19,24 @@ public class JdbcEmployeeDao implements EmployeeDao {
     }
 
 
-    public boolean create(Employee employee) {
+    /*public boolean create(Employee employee) {
         if (null == employee) {
             throw new NullPointerException();
         }
         return Db.getEmployees().add(employee);
+    }*/
+
+    @Override
+    public Employee create(Employee employee) {
+        return null;
     }
 
-    public boolean update(Employee employee) {
+    @Override
+    public Employee update(Employee employee) {
+        return null;
+    }
+
+   /* public boolean update(Employee employee) {
         for (Employee e : Db.getEmployees()) {
             if (employee.getId() == e.getId()) {
                 e.setName(employee.getName());
@@ -36,7 +46,7 @@ public class JdbcEmployeeDao implements EmployeeDao {
             }
         }
         return false;
-    }
+    }*/
 
     public Employee remove(Long id) {
         List<Employee> employees = Db.getEmployees();

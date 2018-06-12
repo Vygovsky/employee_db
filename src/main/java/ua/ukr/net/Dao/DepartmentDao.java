@@ -9,7 +9,7 @@ public interface DepartmentDao {
 
     Department update(Department department);
 
-    Department remove(Department department);
+    Department remove(long id);
 
     List<Department> findAll();
 
