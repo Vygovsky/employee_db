@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.SQLException;
 
-import static javafx.scene.input.KeyCode.F;
 
 public abstract class AbstractJdbcDao {
     public static final String BD_DRIVER = "org.h2.Driver";
