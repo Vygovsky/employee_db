@@ -1,4 +1,6 @@
-package ua.ukr.net.model;
+package main.java.ua.ukr.net.model;
+
+import com.google.gson.Gson;
 
 import java.util.Date;
 
@@ -7,7 +9,7 @@ public class Employee {
     private String name;
     private String email;
     private Date birthday;
-    private long serialNumber;
+
 
     public Employee() {
     }
@@ -17,7 +19,7 @@ public class Employee {
         this.name = name;
         this.email = email;
         this.birthday = birthday;
-        this.serialNumber = serialNumber;
+
     }
 
     public long getId() {
@@ -52,44 +54,30 @@ public class Employee {
         this.birthday = birthday;
     }
 
-    public long getSerialNumber() {
-        return serialNumber;
-    }
-
-    public void setSerialNumber(long serialNumber) {
-        this.serialNumber = serialNumber;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Employee)) return false;
 
         Employee employee = (Employee) o;
 
         if (id != employee.id) return false;
-        if (serialNumber != employee.serialNumber) return false;
-        if (!name.equals(employee.name)) return false;
-        return email.equals(employee.email);
+        if (name != null ? !name.equals(employee.name) : employee.name != null) return false;
+        if (email != null ? !email.equals(employee.email) : employee.email != null) return false;
+        return birthday != null ? birthday.equals(employee.birthday) : employee.birthday == null;
     }
 
     @Override
     public int hashCode() {
         int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + name.hashCode();
-        result = 31 * result + email.hashCode();
-        result = 31 * result + (int) (serialNumber ^ (serialNumber >>> 32));
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + (birthday != null ? birthday.hashCode() : 0);
         return result;
     }
 
     @Override
     public String toString() {
-        return "Employee{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", birthday=" + birthday +
-                ", serialNumber=" + serialNumber +
-                '}';
+        return new Gson().toJson(this);
     }
 }
