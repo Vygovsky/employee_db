@@ -3,7 +3,7 @@ package ua.ukr.net.dao;
 import java.sql.Connection;
 
 public class AbstractJdbcDao {
-    Connection createConnection(){
+    public Connection createConnection(){
         return null;
     };
 }
