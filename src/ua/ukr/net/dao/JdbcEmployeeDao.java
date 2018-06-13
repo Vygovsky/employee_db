@@ -5,7 +5,7 @@ import ua.ukr.net.model.Employee;
 import java.util.Iterator;
 import java.util.List;
 
-public class JdbcEmployeeDao implements EmployeeDao {
+public class JdbcEmployeeDao extends AbstractJdbcDao implements EmployeeDao {
     public List<Employee> findAll() {
         return Db.getEmployees();
     }
@@ -41,14 +41,15 @@ public class JdbcEmployeeDao implements EmployeeDao {
             }
         }
     }
-        @Override
-        public Employee findByEmail (String email){
-            for (Employee employee : Db.getEmployees()) {
-                if (employee.getEmail().equals(email)) {
-                    return employee;
-                }
+
+    @Override
+    public Employee findByEmail(String email) {
+        for (Employee employee : Db.getEmployees()) {
+            if (employee.getEmail().equals(email)) {
+                return employee;
             }
-            return null;
         }
+        return null;
     }
+}
 
