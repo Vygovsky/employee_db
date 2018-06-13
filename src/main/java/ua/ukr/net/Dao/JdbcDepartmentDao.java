@@ -1,6 +1,6 @@
-package ua.ukr.net.dao;
+package main.java.ua.ukr.net.dao;
 
-import ua.ukr.net.model.Department;
+import main.java.ua.ukr.net.model.Department;
 
 import java.util.List;
 

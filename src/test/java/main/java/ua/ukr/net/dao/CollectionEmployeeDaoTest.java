@@ -1,9 +1,9 @@
-package ua.ukr.net.dao;
+package main.java.ua.ukr.net.dao;
 
 import org.junit.*;
 import ua.ukr.net.Dao.JdbcEmployeeDao;
 import ua.ukr.net.Dao.Db;
-import ua.ukr.net.model.Employee;
+import main.java.ua.ukr.net.model.Employee;
 
 import java.util.Date;
 

@@ -1,10 +1,11 @@
-package ua.ukr.net.Dao;
+package main.java.ua.ukr.net.dao;
 
-import ua.ukr.net.model.Employee;
+import main.java.ua.ukr.net.model.Employee;
+
 import java.util.Iterator;
 import java.util.List;
 
-public class JdbcEmployeeDao implements EmployeeDao {
+public class JdbcEmployeeDao extends AbstractJdbcDao implements EmployeeDao {
     public List<Employee> findAll() {
         return Db.getEmployees();
     }
@@ -19,46 +20,26 @@ public class JdbcEmployeeDao implements EmployeeDao {
     }
 
 
-    /*public boolean create(Employee employee) {
-        if (null == employee) {
-            throw new NullPointerException();
-        }
-        return Db.getEmployees().add(employee);
-    }*/
-
     @Override
-    public Employee create(Employee employee) {
-        return null;
+    public void create(Employee employee) {
+
     }
 
     @Override
-    public Employee update(Employee employee) {
-        return null;
+    public void update(Employee employee) {
+
     }
 
-   /* public boolean update(Employee employee) {
-        for (Employee e : Db.getEmployees()) {
-            if (employee.getId() == e.getId()) {
-                e.setName(employee.getName());
-                e.setEmail(employee.getEmail());
-                e.setBirthday(employee.getBirthday());
-                return true;
-            }
-        }
-        return false;
-    }*/
 
-    public Employee remove(Long id) {
+    public void remove(Long id) {
         List<Employee> employees = Db.getEmployees();
         Iterator<Employee> iterator = employees.iterator();
         while (iterator.hasNext()) {
             Employee next = iterator.next();
             if (next.getId() == id) {
                 iterator.remove();
-                return next;
             }
         }
-        return null;
     }
 
     @Override
