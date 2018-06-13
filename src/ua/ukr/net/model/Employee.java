@@ -1,5 +1,7 @@
 package ua.ukr.net.model;
 
+import com.google.gson.Gson;
+
 import java.util.Date;
 
 public class Employee {
@@ -76,11 +78,6 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "Employee{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", birthday=" + birthday +
-                '}';
+        return new Gson().toJson(this);
     }
 }

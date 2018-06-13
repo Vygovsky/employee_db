@@ -1,24 +1,24 @@
-package ua.ukr.net.Dao;
+package ua.ukr.net.dao;
 
 import ua.ukr.net.model.Department;
 
 import java.util.List;
 
-public class JdbcDepartmentDao implements DepartmentDao {
+public class JdbcDepartmentDao extends AbstractJdbcDao implements DepartmentDao {
 
     @Override
-    public Department create(Department department) {
-        return null;
+    public void create(Department department) {
+
     }
 
     @Override
-    public Department update(Department department) {
-        return null;
+    public void update(Department department) {
+
     }
 
     @Override
-    public Department remove(long id) {
-        return null;
+    public void remove(Long id) {
+
     }
 
     @Override
@@ -31,3 +31,5 @@ public class JdbcDepartmentDao implements DepartmentDao {
         return null;
     }
 }
+
+

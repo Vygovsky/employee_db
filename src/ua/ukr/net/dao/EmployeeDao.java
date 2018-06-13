@@ -1,4 +1,4 @@
-package ua.ukr.net.Dao;
+package ua.ukr.net.dao;
 
 import ua.ukr.net.model.Employee;
 
@@ -6,16 +6,15 @@ import java.util.List;
 
 public interface EmployeeDao {
 
-    Employee create(Employee employee);
+    void create(Employee employee);
 
-    Employee update(Employee employee);
+    void update(Employee employee);
 
-    Employee remove(Long id);
+    void remove(Long id);
 
     List<Employee> findAll();
 
     Employee findById(Long id);
-
 
     Employee findByEmail(String email);
 

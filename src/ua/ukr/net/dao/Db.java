@@ -1,4 +1,4 @@
-package ua.ukr.net.Dao;
+package ua.ukr.net.dao;
 
 import ua.ukr.net.model.Employee;
 

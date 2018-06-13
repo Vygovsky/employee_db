@@ -1,15 +1,15 @@
-package ua.ukr.net.Dao;
+package ua.ukr.net.dao;
 
 import ua.ukr.net.model.Department;
 
 import java.util.List;
 
 public interface DepartmentDao {
-    Department create(Department department);
+    void create(Department department);
 
-    Department update(Department department);
+    void update(Department department);
 
-    Department remove(long id);
+    void remove(Long id);
 
     List<Department> findAll();
 

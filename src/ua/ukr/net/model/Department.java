@@ -1,14 +1,16 @@
 package ua.ukr.net.model;
 
+import com.google.gson.Gson;
+
 import java.util.List;
 
 public class Department {
     private String name;
-    List<Employee> employeeDepartment;
+    private List<Employee> employees;
 
-    public Department(String name, List<Employee> employeeDepartment) {
+    public Department(String name, List<Employee> employees) {
         this.name = name;
-        this.employeeDepartment = employeeDepartment;
+        this.employees = employees;
     }
 
     public String getName() {
@@ -20,11 +22,11 @@ public class Department {
     }
 
     public List<Employee> getEmployeeDepartment() {
-        return employeeDepartment;
+        return employees;
     }
 
     public void setEmployeeDepartment(List<Employee> employeeDepartment) {
-        this.employeeDepartment = employeeDepartment;
+        this.employees = employeeDepartment;
     }
 
     @Override
@@ -35,21 +37,20 @@ public class Department {
         Department that = (Department) o;
 
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        return employeeDepartment != null ? employeeDepartment.equals(that.employeeDepartment) : that.employeeDepartment == null;
+        return employees != null ? employees.equals(that.employees) : that.employees == null;
     }
 
     @Override
     public int hashCode() {
         int result = name != null ? name.hashCode() : 0;
-        result = 31 * result + (employeeDepartment != null ? employeeDepartment.hashCode() : 0);
+        result = 31 * result + (employees != null ? employees.hashCode() : 0);
         return result;
     }
 
     @Override
     public String toString() {
-        return "Department{" +
-                "name='" + name + '\'' +
-                ", employeeDepartment=" + employeeDepartment +
-                '}';
+        return new Gson().toJson(this);
     }
+
+
 }
