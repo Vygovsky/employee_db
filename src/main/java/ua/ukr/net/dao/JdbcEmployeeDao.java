@@ -7,15 +7,10 @@ import java.util.List;
 
 public class JdbcEmployeeDao extends AbstractJdbcDao implements EmployeeDao {
     public List<Employee> findAll() {
-        return Db.getEmployees();
+        return null;
     }
 
     public Employee findById(Long id) {
-        for (Employee employee : Db.getEmployees()) {
-            if (employee.getId() == id) {
-                return employee;
-            }
-        }
         return null;
     }
 
@@ -32,23 +27,11 @@ public class JdbcEmployeeDao extends AbstractJdbcDao implements EmployeeDao {
 
 
     public void remove(Long id) {
-        List<Employee> employees = Db.getEmployees();
-        Iterator<Employee> iterator = employees.iterator();
-        while (iterator.hasNext()) {
-            Employee next = iterator.next();
-            if (next.getId() == id) {
-                iterator.remove();
-            }
-        }
+        
     }
 
     @Override
     public Employee findByEmail(String email) {
-        for (Employee employee : Db.getEmployees()) {
-            if (employee.getEmail().equals(email)) {
-                return employee;
-            }
-        }
         return null;
     }
 }
