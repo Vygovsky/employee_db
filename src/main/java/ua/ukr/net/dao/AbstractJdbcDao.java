@@ -11,13 +11,9 @@ public abstract class AbstractJdbcDao {
     public static final String BD_LOGIN = "";
     public static final String BD_PASSWORD = "";
 
-    Connection connection;
+    private Connection connection;
 
     public Connection createConnection() throws SQLException {
-
-
         return null;
     }
-
-    ;
 }
