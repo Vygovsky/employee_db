@@ -8,17 +8,14 @@ public class JdbcDepartmentDao extends AbstractJdbcDao implements DepartmentDao 
 
     @Override
     public void create(Department department) {
-
     }
 
     @Override
     public void update(Department department) {
-
     }
 
     @Override
     public void remove(Long id) {
-
     }
 
     @Override

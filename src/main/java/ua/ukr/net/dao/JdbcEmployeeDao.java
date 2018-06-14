@@ -6,7 +6,6 @@ import java.util.List;
 
 public class JdbcEmployeeDao extends AbstractJdbcDao implements EmployeeDao {
 
-
     @Override
     public void update(Employee employee) {
 

@@ -19,7 +19,6 @@ public class Employee {
         this.name = name;
         this.email = email;
         this.birthday = birthday;
-
     }
 
     public long getId() {

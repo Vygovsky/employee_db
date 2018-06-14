@@ -9,6 +9,4 @@ public abstract class AbstractJdbcDao {
     public Connection createConnection() throws SQLException {
         return null;
     };
-
-
 }

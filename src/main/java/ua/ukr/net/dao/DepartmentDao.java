@@ -5,6 +5,7 @@ import ua.ukr.net.model.Department;
 import java.util.List;
 
 public interface DepartmentDao {
+
     void create(Department department);
 
     void update(Department department);

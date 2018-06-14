@@ -52,6 +52,4 @@ public class Department {
     public String toString() {
         return new Gson().toJson(this);
     }
-
-
 }
