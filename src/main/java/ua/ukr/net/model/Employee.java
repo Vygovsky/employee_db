@@ -1,4 +1,4 @@
-package main.java.ua.ukr.net.model;
+package ua.ukr.net.model;
 
 import com.google.gson.Gson;
 

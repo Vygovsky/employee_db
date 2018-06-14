@@ -1,10 +1,11 @@
-package main.java.ua.ukr.net.model;
+package ua.ukr.net.model;
 
 import com.google.gson.Gson;
 
 import java.util.List;
 
 public class Department {
+    private long id;
     private String name;
     private List<Employee> employees;
 
