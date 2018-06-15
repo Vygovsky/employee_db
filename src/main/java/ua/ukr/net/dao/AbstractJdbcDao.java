@@ -1,12 +1,26 @@
 package ua.ukr.net.dao;
 
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 
 
 public abstract class AbstractJdbcDao {
 
+    String configFile = "src/db.properties";
+    HikariConfig config = new HikariConfig(configFile);
+    HikariDataSource dataSource = new HikariDataSource(config);
+    Connection connection = null;
+
     public Connection createConnection() throws SQLException {
-        return null;
-    };
+        try {
+            connection = dataSource.getConnection();
+
+        } catch (SQLException e) {
+            System.out.println("rer");
+        }
+        return connection;
+    }
 }
