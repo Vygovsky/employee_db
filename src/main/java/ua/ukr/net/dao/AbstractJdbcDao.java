@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
 public abstract class AbstractJdbcDao {
 
-    String configFile = "src/db.properties";
+    private String configFile = "src/db.properties";
     HikariConfig config = new HikariConfig(configFile);
     HikariDataSource dataSource = new HikariDataSource(config);
     Connection connection = null;
@@ -17,7 +17,6 @@ public abstract class AbstractJdbcDao {
     public Connection createConnection() throws SQLException {
         try {
             connection = dataSource.getConnection();
-
         } catch (SQLException e) {
             System.out.println("rer");
         }
