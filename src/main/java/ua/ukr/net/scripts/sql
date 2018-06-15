@@ -28,7 +28,7 @@ CREATE TABLE "DEPARTMENT"
 "NAME" VARCHAR (100) NOT NULL,
 CONSTRAINT "EMPLOYEE_PKEY" PRIMARY KEY ("ID")
 )
-insert into DEPARTMENT (ID, NAME,)
+insert into DEPARTMENT (ID, NAME)
 values
 (1, 'Google'),
 (2, 'Yahoo'),
@@ -43,7 +43,21 @@ CREATE TABLE "EMPLOYEE_DEPART"
 "DEPARTMENT_ID" BIGINT NOT NULL,
 foreign key (EMPLOYEE_ID) references EMPLOYEE(ID)
 foreign key (DEPARTMENT_ID) references DEPARTMENT(ID)
- )
+)
+
+insert into EMPLOYEE_DEPART (EMPLOYEE_ID, DEPARTMENT_ID)
+values
+  (1, 1),
+  (2, 2),
+  (3, 3),
+  (4, 4),
+  (5, 2),
+  (6, 3),
+  (7, 4),
+  (8, 4),
+  (9, 1),
+  (10, 3);
+
 
 /*CONSTRAINT "EMPLOYEE_DEPART_EMPLOYEE_ID_fkey" FOREIGN KEY ("EMPLOYEE_ID")
 REFERENCES public."EMPLOYEE" ("ID"),

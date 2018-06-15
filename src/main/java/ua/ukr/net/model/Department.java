@@ -14,6 +14,14 @@ public class Department {
         this.employees = employees;
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
@@ -22,12 +30,12 @@ public class Department {
         this.name = name;
     }
 
-    public List<Employee> getEmployeeDepartment() {
+    public List<Employee> getEmployees() {
         return employees;
     }
 
-    public void setEmployeeDepartment(List<Employee> employeeDepartment) {
-        this.employees = employeeDepartment;
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
     }
 
     @Override
@@ -37,13 +45,15 @@ public class Department {
 
         Department that = (Department) o;
 
+        if (id != that.id) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         return employees != null ? employees.equals(that.employees) : that.employees == null;
     }
 
     @Override
     public int hashCode() {
-        int result = name != null ? name.hashCode() : 0;
+        int result = (int) (id ^ (id >>> 32));
+        result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (employees != null ? employees.hashCode() : 0);
         return result;
     }
