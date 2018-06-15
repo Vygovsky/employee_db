@@ -8,8 +8,13 @@ CONSTRAINT "EMPLOYEE_PKEY" PRIMARY KEY ("ID"),
 CONSTRAINT "EMPLOYEE_FKEY" FOREIGN KEY ("ID") REFERENCES "ID" ("ID")
 )
 
-
-
+insert into EMPLOYEE (ID, FIRST_NAME, EMAIL, BIRTHDAY)
+values
+(1, 'Mark', 'Markovich@mail.net', '1988-12-13'),
+(2, 'Marina', 'poli@ukr.net', '2000-05-13'),
+(3, 'Petr', 'petrosik@gmail.net', '2005-08-23'),
+(4, 'Gosh', 'lombok@meta.net', '1986-09-30'),
+(5, 'Roman', 'romik@ukr.net', '1996-06-27');
 
 CREATE TABLE "DEPARTMENT"
 (
