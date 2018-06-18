@@ -2,6 +2,7 @@ package ua.ukr.net.dao;
 
 import ua.ukr.net.model.Employee;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -10,6 +11,8 @@ import java.util.List;
 
 public class JdbcEmployeeDao extends AbstractJdbcDao implements EmployeeDao {
     private final String FIND_ALL_EMPL = "SELECT* FROM EMPLOYEE";
+    private final String FIND_BY_ID_EMPL = "SELECT ID, FIRST_NAME,EMAIL,BIRTHDAY FROM EMPLOYEE WHERE ID=?";
+    private final String FIND_BY_EMAIL_EMPL = "SELECT ID, FIRST_NAME,EMAIL,BIRTHDAY FROM EMPLOYEE WHERE EMAIL=?";
 
     @Override
     public void update(Employee employee) {
@@ -49,12 +52,37 @@ public class JdbcEmployeeDao extends AbstractJdbcDao implements EmployeeDao {
 
     @Override
     public Employee findById(Long id) {
-        return null;
+        Employee employee = new Employee();
+
+        try {
+            PreparedStatement preparedStatement = createConnection().prepareStatement(FIND_BY_ID_EMPL);
+            preparedStatement.setLong(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            employee.setId(resultSet.getLong("ID"));
+            employee.setName(resultSet.getString("FIRST_NAME"));
+            employee.setEmail(resultSet.getString("EMAIL"));
+            employee.setBirthday(resultSet.getDate("BIRTHDAY"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return employee;
     }
 
     @Override
     public Employee findByEmail(String email) {
-        return null;
+        Employee employeeMail = new Employee();
+        try {
+            PreparedStatement preparedStatement = createConnection().prepareStatement(FIND_BY_EMAIL_EMPL);
+            preparedStatement.setString(1, email);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            employeeMail.setId(resultSet.getLong("ID"));
+            employeeMail.setName(resultSet.getString("FIRST_NAME"));
+            employeeMail.setEmail(resultSet.getString("EMAIL"));
+            employeeMail.setBirthday(resultSet.getDate("BIRTHDAY"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return employeeMail;
     }
 }
 
