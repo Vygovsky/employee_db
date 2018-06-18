@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JdbcEmployeeDao extends AbstractJdbcDao implements EmployeeDao {
-    private final String FIND_ALL = "SELECT* FROM EMPLOYEE";
+    private final String FIND_ALL_EMPL = "SELECT* FROM EMPLOYEE";
 
     @Override
     public void update(Employee employee) {
@@ -31,7 +31,7 @@ public class JdbcEmployeeDao extends AbstractJdbcDao implements EmployeeDao {
         List<Employee> listEmployee = new ArrayList<>();
         try {
             Statement statement = createConnection().createStatement();
-            ResultSet resultSet = statement.executeQuery(FIND_ALL);
+            ResultSet resultSet = statement.executeQuery(FIND_ALL_EMPL);
 
             while (resultSet.next()) {
                 Employee employee = new Employee();

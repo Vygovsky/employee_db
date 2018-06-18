@@ -14,6 +14,9 @@ public class Department {
         this.employees = employees;
     }
 
+    public Department() {
+    }
+
     public long getId() {
         return id;
     }
