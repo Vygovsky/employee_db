@@ -8,9 +8,9 @@ import java.util.List;
 
 public class JdbcDepartmentDao extends AbstractJdbcDao implements DepartmentDao {
     private final static String BD_FIND_ALL_DEPART = "SELECT*FROM department";
-    private final String FIND_BY_ID_DEPART = "SELECT * FROM department WHERE id=?";
+    private final String FIND_BY_NAME_DEPART = "SELECT * FROM department WHERE name=?";
     private final String UPDATE_DEPART = "UPDATE department SET name=? WHERE id=?";
-    private final String DELETE_DEPART = "DELETE FROM department WHERE name=?";
+    private final String DELETE_DEPART = "DELETE FROM department WHERE id=?";
     private final String INSERT_DEPART = "INSERT INTO department (id, name) VALUES(?,?)";
 
     @Override
@@ -74,7 +74,7 @@ public class JdbcDepartmentDao extends AbstractJdbcDao implements DepartmentDao 
         Department department = new Department(0, null, null);
 
         try {
-            PreparedStatement preparedStatement = createConnection().prepareStatement(FIND_BY_ID_DEPART);
+            PreparedStatement preparedStatement = createConnection().prepareStatement(FIND_BY_NAME_DEPART);
             preparedStatement.setString(1, nameDepartment);
             ResultSet resultSet = preparedStatement.executeQuery();
             department.setId(resultSet.getLong("ID"));
