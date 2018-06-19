@@ -1,28 +1,54 @@
 package ua.ukr.net.dao;
 
-        import ua.ukr.net.model.Department;
+import ua.ukr.net.model.Department;
 
-        import java.sql.PreparedStatement;
-        import java.sql.ResultSet;
-        import java.sql.SQLException;
-        import java.sql.Statement;
-        import java.util.ArrayList;
-        import java.util.List;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class JdbcDepartmentDao extends AbstractJdbcDao implements DepartmentDao {
-    final static String BD_FIND_ALL_DEPART = "SELECT*FROM DEPARTMENT";
+    private final static String BD_FIND_ALL_DEPART = "SELECT*FROM department";
+    private final String FIND_BY_ID_DEPART = "SELECT * FROM department WHERE id=?";
+    private final String UPDATE_DEPART = "UPDATE department SET name=? WHERE id=?";
+    private final String DELETE_DEPART = "DELETE FROM department WHERE id=?";
+    private final String INSERT_DEPART = "INSERT INTO department (id, name) VALUES(?,?)";
 
     @Override
     public void create(Department department) {
+        try {
+            PreparedStatement preparedStatement = createConnection().prepareStatement(INSERT_DEPART);
+            preparedStatement.setLong(1, department.getId());
+            preparedStatement.setString(2, department.getName());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void update(Department department) {
+        try {
+            PreparedStatement preparedStatement = createConnection().prepareStatement(UPDATE_DEPART);
+            preparedStatement.setString(1, department.getName());
+            preparedStatement.setLong(2, department.getId());
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void remove(Long id) {
+        try {
+            PreparedStatement preparedStatement = createConnection().prepareStatement(DELETE_DEPART);
+            preparedStatement.setLong(1, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
+
 
     @Override
     public List<Department> findAll() {
@@ -44,8 +70,19 @@ public class JdbcDepartmentDao extends AbstractJdbcDao implements DepartmentDao 
     }
 
     @Override
-    public Department findByName(String NameDepartment) {
-        return null;
+    public Department findByName(String nameDepartment) {
+        Department department = new Department(0, null, null);
+
+        try {
+            PreparedStatement preparedStatement = createConnection().prepareStatement(FIND_BY_ID_DEPART);
+            preparedStatement.setString(1, nameDepartment);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            department.setId(resultSet.getLong("ID"));
+            department.setName(resultSet.getString("NAME"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return department;
     }
 }
 

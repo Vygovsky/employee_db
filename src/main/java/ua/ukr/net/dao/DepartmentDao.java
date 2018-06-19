@@ -14,5 +14,5 @@ public interface DepartmentDao {
 
     List<Department> findAll();
 
-    Department findByName(String NameDepartment);
+    Department findByName(String nameDepartment);
 }

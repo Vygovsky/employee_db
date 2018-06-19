@@ -54,8 +54,6 @@ public class JdbcEmployeeDao extends AbstractJdbcDao implements EmployeeDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
     }
 
     @Override
