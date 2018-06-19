@@ -1,13 +1,13 @@
 package ua.ukr.net.dao;
 
-import ua.ukr.net.model.Department;
+        import ua.ukr.net.model.Department;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+        import java.sql.PreparedStatement;
+        import java.sql.ResultSet;
+        import java.sql.SQLException;
+        import java.sql.Statement;
+        import java.util.ArrayList;
+        import java.util.List;
 
 public class JdbcDepartmentDao extends AbstractJdbcDao implements DepartmentDao {
     final static String BD_FIND_ALL_DEPART = "SELECT*FROM DEPARTMENT";
@@ -31,9 +31,10 @@ public class JdbcDepartmentDao extends AbstractJdbcDao implements DepartmentDao 
             Statement statement = createConnection().createStatement();
             ResultSet resultSet = statement.executeQuery(BD_FIND_ALL_DEPART);
             while (resultSet.next()) {
-                Department department = new Department();
-                department.setId(resultSet.getLong("ID"));
-                department.setName(resultSet.getString("NAME"));
+                Department department = new Department(resultSet.getLong("ID"), resultSet.getString("NAME"), null);
+                //old code
+                /*department.setId(resultSet.getLong("ID"));
+                department.setName(resultSet.getString("NAME"));*/
                 departmentList.add(department);
             }
         } catch (SQLException e) {

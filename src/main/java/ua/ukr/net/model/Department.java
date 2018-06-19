@@ -9,12 +9,10 @@ public class Department {
     private String name;
     private List<Employee> employees;
 
-    public Department(String name, List<Employee> employees) {
+    public Department(long id, String name, List<Employee> employees) {
+        this.id = id;
         this.name = name;
         this.employees = employees;
-    }
-
-    public Department() {
     }
 
     public long getId() {

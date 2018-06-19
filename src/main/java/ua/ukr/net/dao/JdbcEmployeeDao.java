@@ -10,9 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JdbcEmployeeDao extends AbstractJdbcDao implements EmployeeDao {
-    private final String FIND_ALL_EMPL = "SELECT* FROM EMPLOYEE";
-    private final String FIND_BY_ID_EMPL = "SELECT ID, FIRST_NAME,EMAIL,BIRTHDAY FROM EMPLOYEE WHERE ID=?";
-    private final String FIND_BY_EMAIL_EMPL = "SELECT ID, FIRST_NAME,EMAIL,BIRTHDAY FROM EMPLOYEE WHERE EMAIL=?";
+    private final String FIND_ALL_EMPL = "SELECT* FROM employee";
+    private final String FIND_BY_ID_EMPL = "SELECT * FROM employee WHERE id=?";
+    private final String FIND_BY_EMAIL_EMPL = "SELECT * FROM employee WHERE email=?";
 
     @Override
     public void update(Employee employee) {
