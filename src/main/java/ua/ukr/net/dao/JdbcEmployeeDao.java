@@ -2,10 +2,7 @@ package ua.ukr.net.dao;
 
 import ua.ukr.net.model.Employee;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,19 +10,51 @@ public class JdbcEmployeeDao extends AbstractJdbcDao implements EmployeeDao {
     private final String FIND_ALL_EMPL = "SELECT* FROM employee";
     private final String FIND_BY_ID_EMPL = "SELECT * FROM employee WHERE id=?";
     private final String FIND_BY_EMAIL_EMPL = "SELECT * FROM employee WHERE email=?";
+    private final String UPDATE_EMPLOYEE = "UPDATE employee SET first_name=?, email=?, birthday=? WHERE id=?";
+    private final String DELETE = "DELETE FROM employee WHERE id=?";
+    private final String INSERT_EMPL = "INSERT INTO employee (id, first_name, email, birthday) VALUES(?,?,?,?)";
 
     @Override
     public void update(Employee employee) {
+        try {
+            PreparedStatement preparedStatement = createConnection().prepareStatement(UPDATE_EMPLOYEE);
+            preparedStatement.setString(1, employee.getName());
+            preparedStatement.setString(2, employee.getEmail());
+            preparedStatement.setDate(3, (Date) employee.getBirthday());
+            preparedStatement.setLong(4, employee.getId());
+            preparedStatement.executeUpdate();
 
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void create(Employee employee) {
+        try {
+            PreparedStatement preparedStatement = createConnection().prepareStatement(INSERT_EMPL);
+            preparedStatement.setLong(1, employee.getId());
+            preparedStatement.setString(2, employee.getName());
+            preparedStatement.setString(3, employee.getEmail());
+            preparedStatement.setDate(4, (Date) employee.getBirthday());
+            preparedStatement.executeUpdate();
 
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void remove(Long id) {
+        try {
+            PreparedStatement preparedStatement = createConnection().prepareStatement(DELETE);
+            preparedStatement.setLong(1, id);
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
 
     }
 
