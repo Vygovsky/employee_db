@@ -8,18 +8,28 @@ import java.sql.SQLException;
 
 
 public abstract class AbstractJdbcDao {
-
-    private String configFile = "src/db.properties";
+/*
+    private String configFile = "db.properties";
     HikariConfig config = new HikariConfig(configFile);
-    HikariDataSource dataSource = new HikariDataSource(config);
-    Connection connection = null;
+    HikariDataSource dataSource = new HikariDataSource(config);*/
+private Connection connection = null;
 
     public Connection createConnection() throws SQLException {
         try {
-            connection = dataSource.getConnection();
+            connection = new HikariDataSource(getHikariConfig()).getConnection();
         } catch (SQLException e) {
-            System.out.println("rer");
+            System.out.println("Error");
         }
         return connection;
+    }
+
+    private HikariConfig getHikariConfig() {
+        HikariConfig config = new HikariConfig();
+        config.setDataSourceClassName(null);
+        config.setDriverClassName("org.h2.Driver");
+        config.setJdbcUrl("jdbc:h2:~/test");
+        config.setUsername("sa");
+        config.setPassword("");
+        return config;
     }
 }

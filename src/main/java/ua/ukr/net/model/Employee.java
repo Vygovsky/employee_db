@@ -14,7 +14,7 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(long id, String name, String email, Date birthday, long serialNumber) {
+    public Employee(long id, String name, String email, Date birthday) {
         this.id = id;
         this.name = name;
         this.email = email;

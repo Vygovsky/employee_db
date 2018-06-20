@@ -8,7 +8,7 @@ import java.util.List;
 
 public class JdbcEmployeeDao extends AbstractJdbcDao implements EmployeeDao {
     private final String FIND_ALL_EMPL = "SELECT* FROM employee";
-    private final String FIND_BY_ID_EMPL = "SELECT * FROM employee WHERE id=?";
+    private final String FIND_BY_ID_EMPL = "SELECT id, first_name, email, birthday FROM employee WHERE id=?";
     private final String FIND_BY_EMAIL_EMPL = "SELECT * FROM employee WHERE email=?";
     private final String UPDATE_EMPLOYEE = "UPDATE employee SET first_name=?, email=?, birthday=? WHERE id=?";
     private final String DELETE = "DELETE FROM employee WHERE id=?";
@@ -89,6 +89,7 @@ public class JdbcEmployeeDao extends AbstractJdbcDao implements EmployeeDao {
             employee.setName(resultSet.getString("FIRST_NAME"));
             employee.setEmail(resultSet.getString("EMAIL"));
             employee.setBirthday(resultSet.getDate("BIRTHDAY"));
+            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
