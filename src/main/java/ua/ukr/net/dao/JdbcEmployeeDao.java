@@ -8,7 +8,7 @@ import java.util.List;
 
 public class JdbcEmployeeDao extends AbstractJdbcDao implements EmployeeDao {
     private final String FIND_ALL_EMPL = "SELECT* FROM employee";
-    private final String FIND_BY_ID_EMPL = "SELECT id, first_name, email, birthday FROM employee WHERE id=?";
+    private final String FIND_BY_ID_EMPL = "SELECT * FROM employee WHERE id=?";
     private final String FIND_BY_EMAIL_EMPL = "SELECT * FROM employee WHERE email=?";
     private final String UPDATE_EMPLOYEE = "UPDATE employee SET first_name=?, email=?, birthday=? WHERE id=?";
     private final String DELETE = "DELETE FROM employee WHERE id=?";
@@ -84,12 +84,14 @@ public class JdbcEmployeeDao extends AbstractJdbcDao implements EmployeeDao {
         try {
             PreparedStatement preparedStatement = createConnection().prepareStatement(FIND_BY_ID_EMPL);
             preparedStatement.setLong(1, id);
+
             ResultSet resultSet = preparedStatement.executeQuery();
-            employee.setId(resultSet.getLong("ID"));
-            employee.setName(resultSet.getString("FIRST_NAME"));
-            employee.setEmail(resultSet.getString("EMAIL"));
-            employee.setBirthday(resultSet.getDate("BIRTHDAY"));
-            preparedStatement.executeUpdate();
+            while (resultSet.next()) {
+                employee.setId(resultSet.getLong("ID"));
+                employee.setName(resultSet.getString("FIRST_NAME"));
+                employee.setEmail(resultSet.getString("EMAIL"));
+                employee.setBirthday(resultSet.getDate("BIRTHDAY"));
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -103,10 +105,12 @@ public class JdbcEmployeeDao extends AbstractJdbcDao implements EmployeeDao {
             PreparedStatement preparedStatement = createConnection().prepareStatement(FIND_BY_EMAIL_EMPL);
             preparedStatement.setString(1, email);
             ResultSet resultSet = preparedStatement.executeQuery();
-            employeeMail.setId(resultSet.getLong("ID"));
-            employeeMail.setName(resultSet.getString("FIRST_NAME"));
-            employeeMail.setEmail(resultSet.getString("EMAIL"));
-            employeeMail.setBirthday(resultSet.getDate("BIRTHDAY"));
+            while (resultSet.next()) {
+                employeeMail.setId(resultSet.getLong("ID"));
+                employeeMail.setName(resultSet.getString("FIRST_NAME"));
+                employeeMail.setEmail(resultSet.getString("EMAIL"));
+                employeeMail.setBirthday(resultSet.getDate("BIRTHDAY"));
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
