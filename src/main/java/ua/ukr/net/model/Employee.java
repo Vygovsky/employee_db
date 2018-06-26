@@ -1,22 +1,22 @@
 package ua.ukr.net.model;
 
 import com.google.gson.Gson;
-import org.joda.time.DateTime;
+
+
 
 import java.sql.Date;
-import java.sql.Timestamp;
 
 public class Employee {
     private long id;
     private String name;
     private String email;
-    private Timestamp birthday;
+    private Date birthday;
 
 
     public Employee() {
     }
 
-    public Employee(long id, String name, String email, Timestamp birthday) {
+    public Employee(long id, String name, String email, Date birthday) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -47,11 +47,11 @@ public class Employee {
         this.email = email;
     }
 
-    public Timestamp getBirthday() {
+    public Date getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Timestamp birthday) {
+    public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
 

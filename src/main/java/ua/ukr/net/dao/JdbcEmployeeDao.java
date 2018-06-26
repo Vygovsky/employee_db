@@ -1,9 +1,10 @@
 package ua.ukr.net.dao;
 
+import org.h2.store.Data;
 import ua.ukr.net.model.Employee;
-import org.joda.time.DateTime;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class JdbcEmployeeDao extends AbstractJdbcDao implements EmployeeDao {
             PreparedStatement preparedStatement = createConnection().prepareStatement(UPDATE_EMPLOYEE);
             preparedStatement.setString(1, employee.getName());
             preparedStatement.setString(2, employee.getEmail());
-            preparedStatement.setTimestamp(3, employee.getBirthday());
+            preparedStatement.setDate(3, employee.getBirthday());
             preparedStatement.setLong(4, employee.getId());
             preparedStatement.executeUpdate();
 
@@ -37,7 +38,7 @@ public class JdbcEmployeeDao extends AbstractJdbcDao implements EmployeeDao {
             preparedStatement.setLong(1, employee.getId());
             preparedStatement.setString(2, employee.getName());
             preparedStatement.setString(3, employee.getEmail());
-            preparedStatement.setTimestamp(4, employee.getBirthday());
+            preparedStatement.setDate(4,  Date.valueOf(LocalDate.of(1965,9,18)));
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
@@ -69,7 +70,7 @@ public class JdbcEmployeeDao extends AbstractJdbcDao implements EmployeeDao {
                 employee.setId(resultSet.getLong("ID"));
                 employee.setName(resultSet.getString("FIRST_NAME"));
                 employee.setEmail(resultSet.getString("EMAIL"));
-                employee.setBirthday(resultSet.getTimestamp("BIRTHDAY"));
+                employee.setBirthday(resultSet.getDate("BIRTHDAY"));
                 listEmployee.add(employee);
             }
         } catch (SQLException e) {
@@ -91,7 +92,7 @@ public class JdbcEmployeeDao extends AbstractJdbcDao implements EmployeeDao {
                 employee.setId(resultSet.getLong("ID"));
                 employee.setName(resultSet.getString("FIRST_NAME"));
                 employee.setEmail(resultSet.getString("EMAIL"));
-                employee.setBirthday(resultSet.getTimestamp("BIRTHDAY"));
+                employee.setBirthday(resultSet.getDate("BIRTHDAY"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -110,7 +111,7 @@ public class JdbcEmployeeDao extends AbstractJdbcDao implements EmployeeDao {
                 employeeMail.setId(resultSet.getLong("ID"));
                 employeeMail.setName(resultSet.getString("FIRST_NAME"));
                 employeeMail.setEmail(resultSet.getString("EMAIL"));
-                employeeMail.setBirthday(resultSet.getTimestamp("BIRTHDAY"));
+                employeeMail.setBirthday(resultSet.getDate("BIRTHDAY"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
