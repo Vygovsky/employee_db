@@ -11,7 +11,7 @@
     <title>Create Employee</title>
 </head>
 <body>
-<form method="post" action="employee/create">
+<form method="POST" action="/employee/create">
     <table>
         <tr>
             <td>Имя сотрудника :</td>
@@ -23,7 +23,7 @@
         </tr>
         <tr>
             <td>Дата рождения :</td>
-            <td><input type="datetime-local" value="mail"></td>
+            <td><input type="datetime-local" value="date"></td>
         </tr>
         <tr>
             <td align="right" colspan="2"><input type="submit" value="Отправить"></td>
