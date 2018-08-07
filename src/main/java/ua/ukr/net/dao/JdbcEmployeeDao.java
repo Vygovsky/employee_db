@@ -23,7 +23,7 @@ public class JdbcEmployeeDao extends AbstractJdbcDao implements EmployeeDao {
             preparedStatement.setString(1, employee.getName());
             preparedStatement.setString(2, employee.getEmail());
             preparedStatement.setDate(3, employee.getBirthday());
-            preparedStatement.setLong(4, employee.getId());
+        //    preparedStatement.setLong(4, employee.getId());
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
@@ -35,7 +35,7 @@ public class JdbcEmployeeDao extends AbstractJdbcDao implements EmployeeDao {
     public void create(Employee employee) {
         try {
             PreparedStatement preparedStatement = createConnection().prepareStatement(INSERT_EMPL);
-            preparedStatement.setLong(1, employee.getId());
+           // preparedStatement.setLong(1, employee.getId());
             preparedStatement.setString(2, employee.getName());
             preparedStatement.setString(3, employee.getEmail());
             preparedStatement.setDate(4,  Date.valueOf(LocalDate.of(1965,9,18)));
@@ -67,7 +67,7 @@ public class JdbcEmployeeDao extends AbstractJdbcDao implements EmployeeDao {
 
             while (resultSet.next()) {
                 Employee employee = new Employee();
-                employee.setId(resultSet.getLong("ID"));
+             //   employee.setId(resultSet.getLong("ID"));
                 employee.setName(resultSet.getString("FIRST_NAME"));
                 employee.setEmail(resultSet.getString("EMAIL"));
                 employee.setBirthday(resultSet.getDate("BIRTHDAY"));
@@ -89,7 +89,7 @@ public class JdbcEmployeeDao extends AbstractJdbcDao implements EmployeeDao {
 
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                employee.setId(resultSet.getLong("ID"));
+           //     employee.setId(resultSet.getLong("ID"));
                 employee.setName(resultSet.getString("FIRST_NAME"));
                 employee.setEmail(resultSet.getString("EMAIL"));
                 employee.setBirthday(resultSet.getDate("BIRTHDAY"));
@@ -108,7 +108,7 @@ public class JdbcEmployeeDao extends AbstractJdbcDao implements EmployeeDao {
             preparedStatement.setString(1, email);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                employeeMail.setId(resultSet.getLong("ID"));
+              //  employeeMail.setId(resultSet.getLong("ID"));
                 employeeMail.setName(resultSet.getString("FIRST_NAME"));
                 employeeMail.setEmail(resultSet.getString("EMAIL"));
                 employeeMail.setBirthday(resultSet.getDate("BIRTHDAY"));
