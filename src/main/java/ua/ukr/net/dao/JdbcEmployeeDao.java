@@ -14,7 +14,7 @@ public class JdbcEmployeeDao extends AbstractJdbcDao implements EmployeeDao {
     private final String FIND_BY_EMAIL_EMPL = "SELECT * FROM employee WHERE email=?";
     private final String UPDATE_EMPLOYEE = "UPDATE employee SET first_name=?, email=?, birthday=? WHERE id=?";
     private final String DELETE = "DELETE FROM employee WHERE id=?";
-    private final String INSERT_EMPL = "INSERT INTO employee (id, first_name, email, birthday) VALUES(?,?,?,?)";
+    private final String INSERT_EMPL = "INSERT INTO employee (first_name, email, birthday) VALUES(?,?,?)";
 
     @Override
     public void update(Employee employee) {

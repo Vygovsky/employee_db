@@ -1,5 +1,6 @@
 package ua.ukr.net.servlet;
 
+import ua.ukr.net.dao.JdbcEmployeeDao;
 import ua.ukr.net.model.Employee;
 
 import javax.servlet.RequestDispatcher;
@@ -9,10 +10,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @WebServlet("/employee/create")
 public class EmployeeCreateServlet extends HttpServlet {
-    private Employee employee;
+    //private Employee employeeDao;
+    JdbcEmployeeDao employeeDao = new JdbcEmployeeDao();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -22,18 +27,22 @@ public class EmployeeCreateServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        /*String name = req.getParameter("name");
-        String mail = req.getParameter("mail");
-        String date = req.getParameter("date");
-*/
         resp.setCharacterEncoding("UTF-8");
-
+        Employee employee = new Employee();
         employee.setName(req.getParameter("name"));
-        employee.setEmail(req.getParameter("mail"));
-        employee.setBirthday(req.getParameter("date"));
+        employee.setEmail(req.getParameter("email"));
+        try {
+            Date birthday = new SimpleDateFormat("YYYY-MM-DD").parse(req.getParameter("date"));
+            employee.setBirthday(new java.sql.Date(birthday.getTime()));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        employeeDao.create(employee);
 
-        req.setAttribute("user", employee);
-        doGet(req, resp);
+        //just for ferifying
+        employee = employeeDao.findByEmail(employee.getEmail());
+        req.setAttribute("employee", employee);
+        req.getRequestDispatcher("/jsp/employee_result.jsp").forward(req, resp);
 
 
     }

@@ -12,25 +12,10 @@
 </head>
 <body>
 <form method="POST" action="/employee/create">
-    <table>
-        <tr>
-            <td>Имя сотрудника :</td>
-            <td><input type="text" value="name"></td>
-        </tr>
-        <tr>
-            <td>Электронная почта :</td>
-            <td><input type="text" value="mail"></td>
-        </tr>
-        <tr>
-            <td>Дата рождения :</td>
-            <td><input type="datetime-local" value="date"></td>
-        </tr>
-        <tr>
-            <td align="right" colspan="2"><input type="submit" value="Отправить"></td>
-        </tr>
-    </table>
+    Имя сотрудника : <input type="text" name="name">
+    Электронная почта :<input type="text" name="email">
+    Дата рождения :<input type="date" name="date">
+    <input type="submit" value="Отправить">
 </form>
-
-
 </body>
 </html>
