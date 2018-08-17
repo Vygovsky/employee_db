@@ -12,9 +12,9 @@
 </head>
 <body>
 <form method="POST" action="/employee/create">
-    Имя сотрудника : <input type="text" name="name">
-    Электронная почта :<input type="text" name="email">
-    Дата рождения :<input type="date" name="date">
+    Имя сотрудника : <input type="text" name="name"><br>
+    Электронная почта :<input type="text" name="email"><br>
+    Дата рождения :<input type="date" name="date"><br>
     <input type="submit" value="Отправить">
 </form>
 </body>

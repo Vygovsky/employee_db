@@ -57,7 +57,10 @@ public class JdbcDepartmentDao extends AbstractJdbcDao implements DepartmentDao 
             Statement statement = createConnection().createStatement();
             ResultSet resultSet = statement.executeQuery(BD_FIND_ALL_DEPART);
             while (resultSet.next()) {
-                Department department = new Department(resultSet.getLong("ID"), resultSet.getString("NAME"), null);
+                Department department = new Department(
+                        resultSet.getLong("ID"),
+                        resultSet.getString("NAME"),
+                        null);
                 //old code
                 /*department.setId(resultSet.getLong("ID"));
                 department.setName(resultSet.getString("NAME"));*/
