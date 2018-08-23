@@ -1,10 +1,8 @@
 package ua.ukr.net.dao;
 
-import org.h2.store.Data;
 import ua.ukr.net.model.Employee;
 
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,7 +64,7 @@ public class JdbcEmployeeDao extends AbstractJdbcDao implements EmployeeDao {
 
             while (resultSet.next()) {
                 Employee employee = new Employee();
-                //   employee.setId(resultSet.getLong("ID"));
+                employee.setId(resultSet.getLong("ID"));
                 employee.setName(resultSet.getString("FIRST_NAME"));
                 employee.setEmail(resultSet.getString("EMAIL"));
                 employee.setBirthday(resultSet.getDate("BIRTHDAY"));
