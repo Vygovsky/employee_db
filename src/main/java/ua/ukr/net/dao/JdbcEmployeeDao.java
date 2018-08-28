@@ -29,6 +29,7 @@ public class JdbcEmployeeDao extends AbstractJdbcDao implements EmployeeDao {
         }
     }
 
+
     @Override
     public void create(Employee employee) {
         try {
@@ -43,13 +44,11 @@ public class JdbcEmployeeDao extends AbstractJdbcDao implements EmployeeDao {
         }
     }
 
-    @Override
     public void remove(Long id) {
         try {
             PreparedStatement preparedStatement = createConnection().prepareStatement(DELETE);
             preparedStatement.setLong(1, id);
             preparedStatement.executeUpdate();
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -86,7 +85,7 @@ public class JdbcEmployeeDao extends AbstractJdbcDao implements EmployeeDao {
 
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                //     employee.setId(resultSet.getLong("ID"));
+                employee.setId(resultSet.getLong("ID"));
                 employee.setName(resultSet.getString("FIRST_NAME"));
                 employee.setEmail(resultSet.getString("EMAIL"));
                 employee.setBirthday(resultSet.getDate("BIRTHDAY"));

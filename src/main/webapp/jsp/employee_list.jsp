@@ -54,27 +54,41 @@
 <title>List users by departments</title>
 </head>
 <body>
-    <h1>List of users</h1></p>
-    <table id="customers">
-        <thead>
+<h1>List of users</h1></p>
+<table id="customers">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>E-mail</th>
+        <th>Birthday</th>
+        <th>Update</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <c:forEach var="user" items="${list}">
         <tr>
-            <th>#</th>
-            <th>Name</th>
-            <th>E-mail</th>
-            <th>Birthday</th>
+            <td>${user.id}</td>
+            <td>${user.name}</td>
+            <td>${user.email}</td>
+            <td>${user.birthday}</td>
+            <%--<form action="employee_update.jsp" method="post">
+                <td>
+                    <button type="submit" name="update" value="${user.id}">update</button>
+                </td>
+            </form>--%>
+            <form action="deleteEmployee" method="get">
+                <td>
+                    <%--<button type="submit" name="delete" =value="${user.id}">delete</button>--%>
+                        <a href="/deleteEmployee?id=<c:out value='${user.id}'/>">Delete</a>
+
+                </td>
+            </form>
         </tr>
-        </thead>
-        <tbody>
-        <c:forEach var="user" items="${list}">
-            <tr>
-                <td>${user.id}</td>
-                <td>${user.name}</td>
-                <td>${user.email}</td>
-                <td>${user.birthday}</td>
-            </tr>
-        </c:forEach>
-        </tbody>
-    </table>
+    </c:forEach>
+    </tbody>
+</table>
 
 </body>
 </html>

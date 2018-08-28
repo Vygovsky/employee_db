@@ -8,11 +8,11 @@ import java.sql.SQLException;
 
 
 public abstract class AbstractJdbcDao {
-/*
-    private String configFile = "db.properties";
-    HikariConfig config = new HikariConfig(configFile);
-    HikariDataSource dataSource = new HikariDataSource(config);*/
-private Connection connection = null;
+    /*
+        private String configFile = "db.properties";
+        HikariConfig config = new HikariConfig(configFile);
+        HikariDataSource dataSource = new HikariDataSource(config);*/
+    private Connection connection = null;
 
     public Connection createConnection() throws SQLException {
         try {
@@ -21,7 +21,7 @@ private Connection connection = null;
             System.out.println("Error");
         }
         return connection;
-    }
+   }
 
     private HikariConfig getHikariConfig() {
         HikariConfig config = new HikariConfig();
