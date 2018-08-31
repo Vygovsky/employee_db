@@ -1,9 +1,6 @@
 package ua.ukr.net.model;
 
 import com.google.gson.Gson;
-
-
-
 import java.sql.Date;
 
 public class Employee {

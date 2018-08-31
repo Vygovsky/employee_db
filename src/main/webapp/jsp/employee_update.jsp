@@ -1,11 +1,7 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Roman_v
-  Date: 27.08.2018
-  Time: 15:27
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
 <head>
     <title>User update</title>
@@ -13,5 +9,27 @@
 
 <body>
 
+<form method="post" action="editEmployee">
+    <%--@declare id="name"--%>
+    <%--@declare id="email"--%>
+    <%--@declare id="birthday"--%>
+    <tr>
+        Имя сотрудника : <input
+            type="text" name="name"
+            value="<c:out value="${employee.name}" />"/> <br/>
+    </tr>
+    <tr>
+        Почта : <input type="text" name="email"
+                       value="<c:out value="${employee.email}" />"/> <br/>
+    </tr>
+    <tr>
+        День рожления :
+        <td><input type="date" name="date"></td>
+    </tr>
+
+    <button type="submit" name="save" value="${employee.id}">save</button>
+
+
+</form>
 </body>
 </html>

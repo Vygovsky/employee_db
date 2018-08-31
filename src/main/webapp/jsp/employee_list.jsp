@@ -67,21 +67,21 @@
     </tr>
     </thead>
     <tbody>
-    <c:forEach var="user" items="${list}">
+    <c:forEach var="employee" items="${list}">
         <tr>
-            <td>${user.id}</td>
-            <td>${user.name}</td>
-            <td>${user.email}</td>
-            <td>${user.birthday}</td>
-            <%--<form action="employee_update.jsp" method="post">
-                <td>
-                    <button type="submit" name="update" value="${user.id}">update</button>
-                </td>
-            </form>--%>
+            <td>${employee.id}</td>
+            <td>${employee.name}</td>
+            <td>${employee.email}</td>
+            <td>${employee.birthday}</td>
+            <form action="editEmployee" method="post">
+                    <%--  <button type="submit" name="update" value="${user.id}">update</button>--%>
+                <td><a href="/editEmployee?edit=<c:out value='${employee.id}'/>">Edit</a></td>
+
+            </form>
             <form action="deleteEmployee" method="get">
                 <td>
-                    <%--<button type="submit" name="delete" =value="${user.id}">delete</button>--%>
-                        <a href="/deleteEmployee?id=<c:out value='${user.id}'/>">Delete</a>
+                        <%-- <button type="submit" name="delete" value="Submit">delete</button>--%>
+                    <a href="/deleteEmployee?id=<c:out value='${employee.id}'/>">Delete</a>
 
                 </td>
             </form>
