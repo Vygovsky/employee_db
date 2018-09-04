@@ -8,6 +8,7 @@ public class Employee {
     private String name;
     private String email;
     private Date birthday;
+    private Department departament;
 
 
     public Employee() {

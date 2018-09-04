@@ -20,6 +20,9 @@ public class EmployeeEditServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Long id = Long.parseLong( req.getParameter("id"));
+        Employee employee = employeeDao.findById(id);
+        req.setAttribute("employee", employee);
         req.getServletContext().getRequestDispatcher("/jsp/employee_update.jsp").forward(req, resp);
     }
 
@@ -29,10 +32,10 @@ public class EmployeeEditServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html; charset=utf-8");
 
-        Long id = Long.parseLong(req.getParameter("id"));
-        employeeDao.findById(id);
         Employee employee = new Employee();
-        employee.setId(id);
+        String id = req.getParameter("id");
+        employee.setId(Long.parseLong(id));
+        employee.setName(req.getParameter("name"));
         employee.setEmail(req.getParameter("email"));
         LocalDate date = LocalDate.parse(req.getParameter("date"));
         employee.setBirthday(java.sql.Date.valueOf(date));
@@ -40,7 +43,8 @@ public class EmployeeEditServlet extends HttpServlet {
         employeeDao.update(employee);
 
         req.setAttribute("employee", employee);
-        req.getRequestDispatcher("/jsp/employee_list.jsp").forward(req, resp);
+        resp.sendRedirect("/employee/listEmployee");
+        //req.getRequestDispatcher("/jsp/employee_list.jsp").forward(req, resp);
 
     }
 }

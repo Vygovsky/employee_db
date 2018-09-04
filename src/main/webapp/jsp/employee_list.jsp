@@ -48,20 +48,40 @@
             background-color: #86af90;
             color: white;
         }
-    </style>
-</head>
 
-<title>List users by departments</title>
-</head>
+        div {
+        }
+
+        #left {
+            text-align: left;
+        }
+
+        #right {
+            text-align: right;
+        }
+
+        #center {
+            text-align: center;
+        }
+
+        .content {
+            width: 75%; /* Ширина слоя */
+            background: #fc0; /* Цвет фона */
+        }
+    </style>
 <body>
-<h1>List of users</h1></p>
-<table id="customers">
+<div align="center">
+    <h1>List users by departments</h1>
+</div>
+<table align="center" id="customers" width="600">
+    <%--<table id="customers">--%>
     <thead>
     <tr>
         <th>#</th>
         <th>Name</th>
         <th>E-mail</th>
         <th>Birthday</th>
+        <th>Department</th>
         <th>Update</th>
         <th>Delete</th>
     </tr>
@@ -73,21 +93,26 @@
             <td>${employee.name}</td>
             <td>${employee.email}</td>
             <td>${employee.birthday}</td>
+            <%--<td>${employee.department}</td>--%>
             <form action="editEmployee" method="post">
                     <%--  <button type="submit" name="update" value="${user.id}">update</button>--%>
-                <td><a href="/editEmployee?edit=<c:out value='${employee.id}'/>">Edit</a></td>
+                <td><a href="/editEmployee?id=<c:out value='${employee.id}'/>">Edit</a></td>
 
             </form>
-            <form action="deleteEmployee" method="get">
-                <td>
-                        <%-- <button type="submit" name="delete" value="Submit">delete</button>--%>
-                    <a href="/deleteEmployee?id=<c:out value='${employee.id}'/>">Delete</a>
+            <form action="deleteEmployee?id=" method="get">
+         <%--       <td><input type="submit" name="Delete" value='${employee.id}'/>Delete</td>--%>
+                       <a href="/deleteEmployee?id=<c:out value='${employee.id}'/>">Delete</a>
 
-                </td>
             </form>
         </tr>
     </c:forEach>
+
     </tbody>
+    <tr>
+        <td>
+            <button type="submit" name="save" value="Save">Save</button>
+        </td>
+    </tr>
 </table>
 
 </body>

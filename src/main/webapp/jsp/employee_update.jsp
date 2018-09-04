@@ -5,31 +5,47 @@
 <html>
 <head>
     <title>User update</title>
+    <link href="<c:url value="/css/styles.css"/>" rel="stylesheet" type="text/css">
 </head>
 
 <body>
-
-<form method="post" action="editEmployee">
-    <%--@declare id="name"--%>
-    <%--@declare id="email"--%>
-    <%--@declare id="birthday"--%>
-    <tr>
-        Имя сотрудника : <input
-            type="text" name="name"
-            value="<c:out value="${employee.name}" />"/> <br/>
-    </tr>
-    <tr>
-        Почта : <input type="text" name="email"
-                       value="<c:out value="${employee.email}" />"/> <br/>
-    </tr>
-    <tr>
-        День рожления :
-        <td><input type="date" name="date"></td>
-    </tr>
-
-    <button type="submit" name="save" value="${employee.id}">save</button>
-
-
+<form method="post" action="/editEmployee?id=${employee.id}">
+    <div class="form-style-6">
+        <div align="center">
+            <h2>Изменить данные сотрудника </h2>
+        </div>
+        <table>
+            <tr>
+                <td>Номер сотрудника :</td>
+                <td><c:out value="${employee.id} "/></td>
+            </tr>
+            <br/>
+            <tr>
+                <td> Имя сотрудника :</td>
+                <td><input type="text" name="name"
+                           value="<c:out value="${employee.name}" />"/></td>
+                <br/>
+            </tr>
+            <tr>
+                <td> Почта :</td>
+                <td><input type="text" name="email"
+                           value="<c:out value="${employee.email}" />"/></td>
+                <br/>
+            </tr>
+            <tr>
+                <td>День рожления :</td>
+                <td><input type="date" name="date" value="${employee.birthday}"></td>
+            </tr>
+            <br/>
+            <tr>
+                <td>
+                    <button type="submit" name="save" value="Save">Save</button>
+                </td>
+            </tr>
+        </table>
+    </div>
 </form>
+
+
 </body>
 </html>
