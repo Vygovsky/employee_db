@@ -93,24 +93,22 @@
             <td>${employee.name}</td>
             <td>${employee.email}</td>
             <td>${employee.birthday}</td>
-            <%--<td>${employee.department}</td>--%>
+                <%--<td>${employee.department}</td>--%>
             <form action="editEmployee" method="post">
                     <%--  <button type="submit" name="update" value="${user.id}">update</button>--%>
                 <td><a href="/editEmployee?id=<c:out value='${employee.id}'/>">Edit</a></td>
 
-            </form>
-            <form action="deleteEmployee?id=" method="get">
-         <%--       <td><input type="submit" name="Delete" value='${employee.id}'/>Delete</td>--%>
-                       <a href="/deleteEmployee?id=<c:out value='${employee.id}'/>">Delete</a>
+                <form action="deleteEmployee?id=" method="get">
+                    <td><a href="/deleteEmployee?id=<c:out value='${employee.id}'/>">Delete</a></td>
 
-            </form>
+                </form>
         </tr>
     </c:forEach>
 
     </tbody>
     <tr>
         <td>
-            <button type="submit" name="save" value="Save">Save</button>
+            <button type="submit" name="save" value="AddNew">Save</button>
         </td>
     </tr>
 </table>

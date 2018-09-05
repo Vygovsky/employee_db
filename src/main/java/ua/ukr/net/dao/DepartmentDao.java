@@ -3,6 +3,7 @@ package ua.ukr.net.dao;
 import ua.ukr.net.model.Department;
 
 import java.util.List;
+import java.util.Map;
 
 public interface DepartmentDao {
 
@@ -15,4 +16,6 @@ public interface DepartmentDao {
     List<Department> findAll();
 
     Department findByName(String nameDepartment);
+
+    Map<String, Long> getCountOfEmployeesByDepartments();
 }

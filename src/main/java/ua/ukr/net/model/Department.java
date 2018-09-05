@@ -9,6 +9,10 @@ public class Department {
     private String name;
     private List<Employee> employees;
 
+    public Department(String name) {
+        this(0, name, null);
+    }
+
     public Department(long id, String name, List<Employee> employees) {
         this.id = id;
         this.name = name;

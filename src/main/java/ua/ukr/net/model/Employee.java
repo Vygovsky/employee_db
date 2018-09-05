@@ -8,7 +8,7 @@ public class Employee {
     private String name;
     private String email;
     private Date birthday;
-    private Department departament;
+    private Department department;
 
 
     public Employee() {
@@ -18,6 +18,21 @@ public class Employee {
         this.name = name;
         this.email = email;
         this.birthday = birthday;
+    }
+
+    public Employee(String name, String email, Date birthday, Department department) {
+        this.name = name;
+        this.email = email;
+        this.birthday = birthday;
+        this.department = department;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
     public long getId() {
@@ -62,7 +77,8 @@ public class Employee {
         if (id != employee.id) return false;
         if (name != null ? !name.equals(employee.name) : employee.name != null) return false;
         if (email != null ? !email.equals(employee.email) : employee.email != null) return false;
-        return birthday != null ? birthday.equals(employee.birthday) : employee.birthday == null;
+        if (birthday != null ? !birthday.equals(employee.birthday) : employee.birthday != null) return false;
+        return department != null ? department.equals(employee.department) : employee.department == null;
     }
 
     @Override
@@ -71,6 +87,7 @@ public class Employee {
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (birthday != null ? birthday.hashCode() : 0);
+        result = 31 * result + (department != null ? department.hashCode() : 0);
         return result;
     }
 

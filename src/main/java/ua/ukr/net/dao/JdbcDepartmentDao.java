@@ -4,21 +4,28 @@ import ua.ukr.net.model.Department;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class JdbcDepartmentDao extends AbstractJdbcDao implements DepartmentDao {
     private final static String BD_FIND_ALL_DEPART = "SELECT*FROM department";
     private final String FIND_BY_NAME_DEPART = "SELECT * FROM department WHERE name=?";
     private final String UPDATE_DEPART = "UPDATE department SET name=? WHERE id=?";
     private final String DELETE_DEPART = "DELETE FROM department WHERE id=?";
-    private final String INSERT_DEPART = "INSERT INTO department (id, name) VALUES(?,?)";
+    private final String INSERT_DEPART = "INSERT INTO department (name) VALUES(?)";
+    private final String COUNT_EMPL_IN_DEPART = "SELECT NAME, COUNT(*) FROM (\n" +
+            "  SELECT NAME\n" +
+            "  FROM EMPLOYEE\n" +
+            "  INNER JOIN EMPLOYEE_DEPARTMENT ON EMPLOYEE.ID = EMPLOYEE_DEPARTMENT.EMPLOYEE_ID\n" +
+            "  INNER JOIN DEPARTMENT ON EMPLOYEE_DEPARTMENT.DEPARTMENT_ID = DEPARTMENT.ID\n" +
+            ") GROUP BY NAME;";
 
     @Override
     public void create(Department department) {
         try {
             PreparedStatement preparedStatement = createConnection().prepareStatement(INSERT_DEPART);
-            preparedStatement.setLong(1, department.getId());
-            preparedStatement.setString(2, department.getName());
+            preparedStatement.setString(1, department.getName());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -75,17 +82,34 @@ public class JdbcDepartmentDao extends AbstractJdbcDao implements DepartmentDao 
     @Override
     public Department findByName(String nameDepartment) {
         Department department = new Department(0, null, null);
-
         try {
             PreparedStatement preparedStatement = createConnection().prepareStatement(FIND_BY_NAME_DEPART);
             preparedStatement.setString(1, nameDepartment);
             ResultSet resultSet = preparedStatement.executeQuery();
-            department.setId(resultSet.getLong("ID"));
-            department.setName(resultSet.getString("NAME"));
+            if (resultSet.next()) {
+                department.setId(resultSet.getLong("ID"));
+                department.setName(resultSet.getString("NAME"));
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         return department;
+    }
+
+    @Override
+    public Map<String, Long> getCountOfEmployeesByDepartments() {
+        Map<String, Long> map = new HashMap<>();
+        try {
+            Statement statement = createConnection().createStatement();
+            ResultSet resultSet = statement.executeQuery(COUNT_EMPL_IN_DEPART);
+            while (resultSet.next()) {
+                map.put(resultSet.getString("NAME"), resultSet.getLong("COUNT(*)"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return map;
     }
 }
 
