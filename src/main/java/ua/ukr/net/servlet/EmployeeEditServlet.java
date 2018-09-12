@@ -1,6 +1,7 @@
 package ua.ukr.net.servlet;
 
 import ua.ukr.net.dao.JdbcEmployeeDao;
+import ua.ukr.net.model.Department;
 import ua.ukr.net.model.Employee;
 
 import javax.servlet.ServletException;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -33,12 +35,18 @@ public class EmployeeEditServlet extends HttpServlet {
         resp.setContentType("text/html; charset=utf-8");
 
         Employee employee = new Employee();
+        Department department=new Department();
         String id = req.getParameter("id");
         employee.setId(Long.parseLong(id));
         employee.setName(req.getParameter("name"));
         employee.setEmail(req.getParameter("email"));
         LocalDate date = LocalDate.parse(req.getParameter("date"));
         employee.setBirthday(java.sql.Date.valueOf(date));
+        department.setName(req.getParameter("organization"));
+        employee.setDepartment(department);
+
+        PrintWriter writer=resp.getWriter();
+        writer.println("Organization : "+employee.getDepartment());
 
         employeeDao.update(employee);
 

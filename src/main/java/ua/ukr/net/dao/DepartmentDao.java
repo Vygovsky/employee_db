@@ -13,9 +13,11 @@ public interface DepartmentDao {
 
     void remove(Long id);
 
+    Department findID(Long id);
+
     List<Department> findAll();
 
     Department findByName(String nameDepartment);
 
-    Map<String, Long> getCountOfEmployeesByDepartments();
+    Map<Department, Long> getCountOfEmployeesByDepartments();
 }

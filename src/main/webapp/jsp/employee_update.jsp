@@ -38,14 +38,25 @@
             </tr>
             <br/>
             <tr>
-                <td>
-                    <button type="submit" name="save" value="Save">Save</button>
+                <td>Департамент :</td>
+                <td><select name="organization">
+                    <option selected value="organization1">Google</option>
+                    <option value="organization2">Yahoo</option>
+                    <option value="organization3">Oracle</option>
+                    <option value="organization4">Linux</option>
+                </select>
                 </td>
             </tr>
+            <br/>
+            <tr>
+                <td><input type="submit" value="Отправить"></td>
+                <%-- <button type="submit" name="save" value="Save">Save</button>--%>
+            </tr>
+
         </table>
     </div>
 </form>
 
-
 </body>
+
 </html>

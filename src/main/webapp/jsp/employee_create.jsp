@@ -31,12 +31,14 @@
             </tr>
             <tr>
                 <td>Департамент :</td>
-                <td><select name="organization">
-                    <option selected value="Google">Google</option>
-                    <option value="Yahoo">Yahoo</option>
-                    <option value="Oracle">Oracle</option>
-                    <option value="Linux">Linux</option>
-                </select>
+                <td><label>
+                    <select name="organization">
+                        <option selected value="Google">Google</option>
+                        <option value="Yahoo">Yahoo</option>
+                        <option value="Oracle">Oracle</option>
+                        <option value="Linux">Linux</option>
+                    </select>
+                </label>
                 </td>
             </tr>
             <tr>

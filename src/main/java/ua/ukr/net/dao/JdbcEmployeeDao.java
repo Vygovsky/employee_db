@@ -1,5 +1,6 @@
 package ua.ukr.net.dao;
 
+import ua.ukr.net.model.Department;
 import ua.ukr.net.model.Employee;
 
 import java.sql.*;
@@ -7,7 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JdbcEmployeeDao extends AbstractJdbcDao implements EmployeeDao {
-    private final String FIND_ALL_EMPL = "SELECT* FROM employee";
+    private final String FIND_ALL_EMPL = "SELECT EMPLOYEE_ID as ID, FIRST_NAME, EMAIL, BIRTHDAY, NAME FROM EMPLOYEE\n" +
+            "  INNER JOIN EMPLOYEE_DEPARTMENT ON EMPLOYEE.ID = EMPLOYEE_DEPARTMENT.EMPLOYEE_ID\n" +
+            "  INNER JOIN DEPARTMENT ON EMPLOYEE_DEPARTMENT.DEPARTMENT_ID = DEPARTMENT.ID;";
     private final String FIND_BY_ID_EMPL = "SELECT * FROM employee WHERE id=?";
     private final String FIND_BY_EMAIL_EMPL = "SELECT * FROM employee WHERE email=?";
     private final String UPDATE_EMPLOYEE = "UPDATE employee SET first_name=?, email=?, birthday=? WHERE id=?";
@@ -63,11 +66,15 @@ public class JdbcEmployeeDao extends AbstractJdbcDao implements EmployeeDao {
 
             while (resultSet.next()) {
                 Employee employee = new Employee();
+                Department department = new Department();
                 employee.setId(resultSet.getLong("ID"));
                 employee.setName(resultSet.getString("FIRST_NAME"));
                 employee.setEmail(resultSet.getString("EMAIL"));
                 employee.setBirthday(resultSet.getDate("BIRTHDAY"));
+                department.setName(resultSet.getString("NAME"));
+                employee.setDepartment(department);
                 listEmployee.add(employee);
+
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -78,6 +85,7 @@ public class JdbcEmployeeDao extends AbstractJdbcDao implements EmployeeDao {
     @Override
     public Employee findById(Long id) {
         Employee employee = new Employee();
+
 
         try {
             PreparedStatement preparedStatement = createConnection().prepareStatement(FIND_BY_ID_EMPL);

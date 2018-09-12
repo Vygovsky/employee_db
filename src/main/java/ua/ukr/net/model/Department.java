@@ -13,10 +13,18 @@ public class Department {
         this(0, name, null);
     }
 
+    public Department() {
+    }
+
     public Department(long id, String name, List<Employee> employees) {
         this.id = id;
         this.name = name;
         this.employees = employees;
+    }
+
+    public Department(long id, String name) {
+        this.id = id;
+        this.name = name;
     }
 
     public long getId() {

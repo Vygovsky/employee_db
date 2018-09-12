@@ -87,30 +87,30 @@
     </tr>
     </thead>
     <tbody>
-    <c:forEach var="employee" items="${list}">
+    <c:forEach var="empl" items="${list}">
         <tr>
-            <td>${employee.id}</td>
-            <td>${employee.name}</td>
-            <td>${employee.email}</td>
-            <td>${employee.birthday}</td>
-                <%--<td>${employee.department}</td>--%>
+            <td>${empl.id}</td>
+            <td>${empl.name}</td>
+            <td>${empl.email}</td>
+            <td>${empl.birthday}</td>
+            <td>${empl.department.name}</td>
             <form action="editEmployee" method="post">
                     <%--  <button type="submit" name="update" value="${user.id}">update</button>--%>
-                <td><a href="/editEmployee?id=<c:out value='${employee.id}'/>">Edit</a></td>
+                <td><a href="/editEmployee?id=<c:out value='${empl.id}'/>">Edit</a></td>
 
                 <form action="deleteEmployee?id=" method="get">
-                    <td><a href="/deleteEmployee?id=<c:out value='${employee.id}'/>">Delete</a></td>
+                    <td><a href="/deleteEmployee?id=<c:out value='${empl.id}'/>">Delete</a></td>
 
                 </form>
         </tr>
     </c:forEach>
 
     </tbody>
-    <tr>
-        <td>
-            <button type="submit" name="save" value="AddNew">Save</button>
-        </td>
-    </tr>
+        <tr>
+
+                <button type="submit" name="save" value="AddNew">Add User</button>
+
+        </tr>
 </table>
 
 </body>

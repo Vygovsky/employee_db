@@ -1,6 +1,7 @@
 package ua.ukr.net.servlet;
 
 import ua.ukr.net.dao.JdbcEmployeeDao;
+import ua.ukr.net.model.Department;
 import ua.ukr.net.model.Employee;
 
 import javax.servlet.RequestDispatcher;
