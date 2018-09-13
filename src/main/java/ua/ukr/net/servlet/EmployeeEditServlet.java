@@ -1,5 +1,6 @@
 package ua.ukr.net.servlet;
 
+import ua.ukr.net.dao.JdbcDepartmentDao;
 import ua.ukr.net.dao.JdbcEmployeeDao;
 import ua.ukr.net.model.Department;
 import ua.ukr.net.model.Employee;
@@ -12,22 +13,27 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.List;
 
 @WebServlet("/editEmployee")
 public class EmployeeEditServlet extends HttpServlet {
     private JdbcEmployeeDao employeeDao = new JdbcEmployeeDao();
+    private JdbcDepartmentDao departmentDao = new JdbcDepartmentDao();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Long id = Long.parseLong( req.getParameter("id"));
+        Long id = Long.parseLong(req.getParameter("id"));
         Employee employee = employeeDao.findById(id);
+        List<Department> departments = departmentDao.findAll();
         req.setAttribute("employee", employee);
+        req.setAttribute("departments", departments);
         req.getServletContext().getRequestDispatcher("/jsp/employee_update.jsp").forward(req, resp);
     }
-
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -35,24 +41,29 @@ public class EmployeeEditServlet extends HttpServlet {
         resp.setContentType("text/html; charset=utf-8");
 
         Employee employee = new Employee();
-        Department department=new Department();
+        Department department = new Department();
         String id = req.getParameter("id");
         employee.setId(Long.parseLong(id));
         employee.setName(req.getParameter("name"));
         employee.setEmail(req.getParameter("email"));
         LocalDate date = LocalDate.parse(req.getParameter("date"));
         employee.setBirthday(java.sql.Date.valueOf(date));
-        department.setName(req.getParameter("organization"));
-        employee.setDepartment(department);
 
-        PrintWriter writer=resp.getWriter();
-        writer.println("Organization : "+employee.getDepartment());
+        //employee.setDepartment(department);
+        Long departId = Long.parseLong(req.getParameter("id"/*"разберешся как с jsp вытащить id департа"*/));
+      // department.setName(req.getParameter("department"));
+
 
         employeeDao.update(employee);
+        employeeDao.updateDepartForEmployee(employee.getId(), departId);
 
         req.setAttribute("employee", employee);
+
         resp.sendRedirect("/employee/listEmployee");
         //req.getRequestDispatcher("/jsp/employee_list.jsp").forward(req, resp);
 
     }
+
+
 }
+

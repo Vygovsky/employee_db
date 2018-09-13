@@ -39,7 +39,6 @@ public class JdbcDepartmentDao extends AbstractJdbcDao implements DepartmentDao 
             preparedStatement.setString(1, department.getName());
             preparedStatement.setLong(2, department.getId());
             preparedStatement.executeUpdate();
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -116,7 +115,6 @@ public class JdbcDepartmentDao extends AbstractJdbcDao implements DepartmentDao 
 
     @Override
     public Map<Department, Long> getCountOfEmployeesByDepartments() {
-
         Map<Department, Long> map = new HashMap<>();
         Department department;
         try {
@@ -131,6 +129,9 @@ public class JdbcDepartmentDao extends AbstractJdbcDao implements DepartmentDao 
         }
         return map;
     }
+
+
 }
+
 
 
