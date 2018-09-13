@@ -16,7 +16,6 @@ import java.util.List;
 public class EmployeeList extends HttpServlet {
     private JdbcEmployeeDao employeeDao=new JdbcEmployeeDao();
 
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Employee> employeeList = employeeDao.findAll();

@@ -44,7 +44,5 @@ public class EmployeeCreateServlet extends HttpServlet {
         employee = employeeDao.findByEmail(employee.getEmail());
         req.setAttribute("employee", employee);
         req.getRequestDispatcher("/jsp/employee_result.jsp").forward(req, resp);
-
-
     }
 }

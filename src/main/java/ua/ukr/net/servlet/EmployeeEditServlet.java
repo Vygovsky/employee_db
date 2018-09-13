@@ -41,17 +41,13 @@ public class EmployeeEditServlet extends HttpServlet {
         resp.setContentType("text/html; charset=utf-8");
 
         Employee employee = new Employee();
-        Department department = new Department();
         String id = req.getParameter("id");
         employee.setId(Long.parseLong(id));
         employee.setName(req.getParameter("name"));
         employee.setEmail(req.getParameter("email"));
         LocalDate date = LocalDate.parse(req.getParameter("date"));
         employee.setBirthday(java.sql.Date.valueOf(date));
-
-        //employee.setDepartment(department);
-        Long departId = Long.parseLong(req.getParameter("id"/*"разберешся как с jsp вытащить id департа"*/));
-      // department.setName(req.getParameter("department"));
+        Long departId = Long.parseLong(req.getParameter("id"));
 
 
         employeeDao.update(employee);
@@ -63,7 +59,5 @@ public class EmployeeEditServlet extends HttpServlet {
         //req.getRequestDispatcher("/jsp/employee_list.jsp").forward(req, resp);
 
     }
-
-
 }
 

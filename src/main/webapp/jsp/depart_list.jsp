@@ -29,7 +29,6 @@
                 <td>${depart.key.name}</td>
                 <td>${depart.value}</td>
 
-
                 <form action="/employee/departments" method="get">
 
                     <td><a href="/employee/departments?id=<c:out value='${depart.key.id}'/>">List</a></td>

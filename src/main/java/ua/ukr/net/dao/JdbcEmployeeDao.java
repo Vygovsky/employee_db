@@ -123,6 +123,7 @@ public class JdbcEmployeeDao extends AbstractJdbcDao implements EmployeeDao {
         return employeeMail;
     }
 
+
     @Override
     public void updateDepartForEmployee(Long emplId, Long departId) {
         try {

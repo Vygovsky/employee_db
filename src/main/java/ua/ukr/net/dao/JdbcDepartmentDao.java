@@ -91,7 +91,6 @@ public class JdbcDepartmentDao extends AbstractJdbcDao implements DepartmentDao 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return department;
     }
 
