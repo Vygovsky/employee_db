@@ -18,7 +18,8 @@
 <p>Employee email: "${employee.email}"</p>
 <p>Employee birthday: "${employee.birthday}"</p>
 
-<a href='http://localhost:8080/employee/create'>Добавить нового Employee</a>
+<a href='http://localhost:8080/employee/create'>Добавить нового Employee</a><br/>
+<a href='http://localhost:8080/employee/listEmployee'>Посмотреть список</a>
 
 
 </body>

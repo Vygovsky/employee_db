@@ -1,5 +1,6 @@
 package ua.ukr.net.servlet;
 
+import ua.ukr.net.dao.JdbcDepartmentDao;
 import ua.ukr.net.dao.JdbcEmployeeDao;
 import ua.ukr.net.model.Department;
 import ua.ukr.net.model.Employee;
@@ -17,6 +18,7 @@ import java.time.LocalDate;
 @WebServlet("/employee/create")
 public class EmployeeCreateServlet extends HttpServlet {
     private JdbcEmployeeDao employeeDao = new JdbcEmployeeDao();
+    private JdbcDepartmentDao departmentDao = new JdbcDepartmentDao();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -32,10 +34,13 @@ public class EmployeeCreateServlet extends HttpServlet {
         resp.setContentType("text/html; charset=utf-8");
 
         Employee employee = new Employee();
+        Department department=new Department();
         employee.setName(req.getParameter("name"));
         employee.setEmail(req.getParameter("email"));
         LocalDate birthday = LocalDate.parse(req.getParameter("date"));
         employee.setBirthday(java.sql.Date.valueOf(birthday));
+       /* department.s
+        employee.setDepartment(req.getParameter("department"));*/
 
 
         employeeDao.create(employee);

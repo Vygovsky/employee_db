@@ -8,15 +8,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JdbcEmployeeDao extends AbstractJdbcDao implements EmployeeDao {
-    private final String FIND_ALL_EMPL = "SELECT EMPLOYEE_ID as ID, FIRST_NAME, EMAIL, BIRTHDAY, NAME FROM EMPLOYEE\n" +
-            "  INNER JOIN EMPLOYEE_DEPARTMENT ON EMPLOYEE.ID = EMPLOYEE_DEPARTMENT.EMPLOYEE_ID\n" +
-            "  INNER JOIN DEPARTMENT ON EMPLOYEE_DEPARTMENT.DEPARTMENT_ID = DEPARTMENT.ID;";
+    private final String FIND_ALL_EMPL = "SELECT EMPLOYEE.ID as ID, FIRST_NAME, EMAIL, BIRTHDAY, NAME FROM EMPLOYEE\n" +
+            "  LEFT JOIN EMPLOYEE_DEPARTMENT ON EMPLOYEE.ID = EMPLOYEE_DEPARTMENT.EMPLOYEE_ID\n" +
+            "  LEFT JOIN DEPARTMENT ON EMPLOYEE_DEPARTMENT.DEPARTMENT_ID = DEPARTMENT.ID;";
     private final String FIND_BY_ID_EMPL = "SELECT * FROM employee WHERE id=?";
     private final String FIND_BY_EMAIL_EMPL = "SELECT * FROM employee WHERE email=?";
     private final String UPDATE_EMPLOYEE = "UPDATE employee SET first_name=?, email=?, birthday=? WHERE id=?";
     private final String DELETE = "DELETE FROM employee WHERE id=?";
     private final String INSERT_EMPL = "INSERT INTO employee (first_name, email, birthday) VALUES(?,?,?)";
-    private final String UPDATE_BY_DEPART_FOR_IMPL = "UPDATE EMPLOYEE_DEPARTMENT SET DEPARTMENT_ID='?' WHERE EMPLOYEE_ID='?'";
+    private final String UPDATE_BY_DEPART_FOR_IMPL = "UPDATE employee_department SET department_id=? WHERE employee_id=?";
 
 
     @Override

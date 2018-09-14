@@ -30,6 +30,8 @@ public abstract class AbstractJdbcDao {
         config.setJdbcUrl("jdbc:h2:~/test");
         config.setUsername("sa");
         config.setPassword("");
+        config.setMaximumPoolSize(25);
+        config.setAllowPoolSuspension(true);
         return config;
     }
 }

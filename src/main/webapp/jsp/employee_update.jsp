@@ -42,19 +42,12 @@
                 <td>Департамент :</td>
                 <td><select name="departments">
                     <c:forEach var="depart" items="${departments}" >
-                        <%--<option value="1">Google</option>
-                        <option value="2">Yahoo</option>
-                        <option value="3">Oracle</option>
-                        <option value="4">Linux</option>--%>
+
                         <option value="${depart.id}">${depart.name}</option>
                     </c:forEach>
 
                 </select>
-                    <%--<select name="category">
-    <option value="1" ${product.category == '1' ? 'selected' : ''}>Dogs</option>
-    <option value="2" ${product.category == '2' ? 'selected' : ''}>Cats</option>
-    <option value="5" ${product.category == '5' ? 'selected' : ''}>Others</option>
-</select>--%>
+
                 </td>
             </tr>
             </tbody>

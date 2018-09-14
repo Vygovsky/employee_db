@@ -47,17 +47,13 @@ public class EmployeeEditServlet extends HttpServlet {
         employee.setEmail(req.getParameter("email"));
         LocalDate date = LocalDate.parse(req.getParameter("date"));
         employee.setBirthday(java.sql.Date.valueOf(date));
-        Long departId = Long.parseLong(req.getParameter("id"));
-
+        Long departId = Long.parseLong(req.getParameter("departments"));
 
         employeeDao.update(employee);
         employeeDao.updateDepartForEmployee(employee.getId(), departId);
 
         req.setAttribute("employee", employee);
-
         resp.sendRedirect("/employee/listEmployee");
-        //req.getRequestDispatcher("/jsp/employee_list.jsp").forward(req, resp);
-
     }
 }
 
