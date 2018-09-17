@@ -27,7 +27,7 @@ public abstract class AbstractJdbcDao {
         HikariConfig config = new HikariConfig();
         config.setDataSourceClassName(null);
         config.setDriverClassName("org.h2.Driver");
-        config.setJdbcUrl("jdbc:h2:~/test");
+        config.setJdbcUrl("jdbc:h2:tcp://localhost/~/test");
         config.setUsername("sa");
         config.setPassword("");
         config.setMaximumPoolSize(25);

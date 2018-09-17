@@ -107,9 +107,7 @@
 
     </tbody>
         <tr>
-
                 <button type="submit" name="save" value="AddNew">Add User</button>
-
         </tr>
 </table>
 
